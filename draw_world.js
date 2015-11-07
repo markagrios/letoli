@@ -87,10 +87,32 @@ function drawLines() {
 	wctx.lineTo(170,450);
 	wctx.stroke();
 
+	treeShade();
+	goodBerryShade();
+	
 }
 
+function treeShade() {
+	wctx.fillStyle = 'rgba(40,130,50,.5)';
+	
+	wctx.beginPath();
+	wctx.moveTo(430,0);
+	wctx.lineTo(430,510);
+	wctx.lineTo(510,450);
+	wctx.lineTo(510,0);
+	wctx.fill();
+}
 
-
+function goodBerryShade() {
+	wctx.fillStyle = 'rgba(140,130,50,.5)';
+	
+	wctx.beginPath();
+	wctx.moveTo(70,0);
+	wctx.lineTo(70,70);
+	wctx.lineTo(240,70);
+	wctx.lineTo(240,0);
+	wctx.fill();
+}
 
 
 
