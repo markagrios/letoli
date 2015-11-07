@@ -7,23 +7,33 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </head>
-<body onload="drawMap()">
+<body onload="init()">
 
 <p>Letoli</p>
 
-<canvas id="landscape">oops, canvas is not supported.</canvas>
-<div id="info">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer diam arcu, sagittis at malesuada non, ornare non nisl. Curabitur tincidunt ut leo et scelerisque. Proin sed nulla mi. Sed rutrum nisl a massa pellentesque consequat ut non ex. Nulla id consectetur sem, at condimentum nibh. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam semper ante sem, vel auctor mauris lacinia ut. Aenean a imperdiet neque, in porttitor sem. Maecenas et maximus augue. Cras ac est sit amet eros elementum ultrices. Quisque vel dignissim massa. 
-Fm
-Qu, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque sed mauris justo.
+<div id="canvas_container">
+	
+	<canvas id="landscape" height="450" width="510">oops, canvas is not supported.</canvas>
+	<canvas id="world" height="450" width="510">oops, canvas is not supported.</canvas>
+
+	<canvas id="visual" height="450" width="510">oops, canvas is not supported.</canvas>
 </div>
 
-<p>Your ad here.</p>
+<div id="info">
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+	<p>Your ad here.</p>
+</div>
 
-<!--<canvas id="visual" height="450" width="720"></canvas>-->
 
 
 
 <script src="script.js"></script>
+<script src="draw_brain.js"></script>
+<script src="draw_world.js"></script>
 </body>
 </html>
