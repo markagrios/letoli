@@ -4,6 +4,9 @@ var lctx = landscape.getContext("2d");
 var world = document.getElementById('world');
 var wctx = world.getContext("2d");
 
+var shade = document.getElementById('shade');
+var sctx = shade.getContext("2d");
+
 var visual = document.getElementById('visual');
 var vctx = visual.getContext("2d");
 

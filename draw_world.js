@@ -85,15 +85,12 @@ function drawLines() {
 	wctx.beginPath();
 	wctx.moveTo(0,140);
 	wctx.lineTo(170,450);
-	wctx.stroke();
-
-	treeShade();
-	goodBerryShade();
+	wctx.stroke();			
 	
 }
 
 function treeShade() {
-	wctx.fillStyle = 'rgba(40,130,50,.5)';
+	wctx.fillStyle = 'rgba(24,196,30,.5)';
 	
 	wctx.beginPath();
 	wctx.moveTo(430,0);
@@ -104,7 +101,7 @@ function treeShade() {
 }
 
 function goodBerryShade() {
-	wctx.fillStyle = 'rgba(140,130,50,.5)';
+	wctx.fillStyle = 'rgba(255,0,0,.5)';
 	
 	wctx.beginPath();
 	wctx.moveTo(70,0);
@@ -113,6 +110,47 @@ function goodBerryShade() {
 	wctx.lineTo(240,0);
 	wctx.fill();
 }
+
+function badBerryShade() {
+	wctx.fillStyle = 'rgba(255,0,92,.5)';
+	
+	wctx.beginPath();
+	wctx.moveTo(240,0);
+	wctx.lineTo(240,70);
+	wctx.lineTo(400,70);
+	wctx.lineTo(400,0);
+	wctx.fill();
+}
+
+function safeWaterShade() {
+	wctx.fillStyle = 'rgba(65,58,165,.5)';
+	
+	wctx.beginPath();
+	wctx.moveTo(0,70);
+	wctx.lineTo(0,140);
+	wctx.lineTo(170,450);
+	wctx.lineTo(220,450);
+	wctx.fill();
+}
+
+function dangerousWaterShade() {
+	wctx.fillStyle = 'rgba(8,0,124,.5)';
+	
+	wctx.beginPath();
+	wctx.moveTo(0,140);
+	wctx.lineTo(0,450);
+	wctx.lineTo(170,450);
+	wctx.fill();
+}
+
+function shade() {
+	treeShade();
+	goodBerryShade();	
+	badBerryShade();	
+	safeWaterShade();	
+	dangerousWaterShade();
+}
+
 
 
 
