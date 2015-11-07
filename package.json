@@ -1,0 +1,25 @@
+{
+  "name": "letoli",
+  "version": "1.0.0",
+  "description": "neural network that LEarns TO LIve",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markagrios/letoli.git"
+  },
+  "keywords": [
+    "neuralnetwork",
+    "geneticevolution"
+  ],
+  "author": "Mark Agrios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markagrios/letoli/issues"
+  },
+  "homepage": "https://github.com/markagrios/letoli#readme"
+}

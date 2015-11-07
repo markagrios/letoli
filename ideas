@@ -13,6 +13,9 @@ landscape:
     animals to hunt
     tools. pots to store water/food and other functions
 
+mechanics:
+    use the number of his health,food,water etc. to make his color.
+    make day and night, sleep goes up faster at night
 
 victor.js
 math.js

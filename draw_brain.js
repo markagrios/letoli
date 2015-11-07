@@ -7,3 +7,5 @@ function drawCircle(x, y, r) {
 	wctx.fillStyle = letoliColor;
 	wctx.fill();
 }
+
+console.log("draw_brain.js");
