@@ -7,7 +7,7 @@ canvas {
 #canvas_container {
 	height: 460px;
 }
-#world, #landscape {
+#world, #landscape, #shade {
 	position: absolute;
     top: 44;
     left: 8;

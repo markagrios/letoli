@@ -12,138 +12,119 @@ function init() {
 	//setInterval(function(){ alert("Hello"); }, 3000);
 	//drawCircle(126,126,10);
 	
-	//start();
-	setInterval(move(),delay);
-	
 	drawLines();
 }
 
-function start() {
-	return setInterval(move(),delay);
-}
-
-function clear() {
-  wctx.clearRect(0, 0, WIDTH, HEIGHT);
+function clear(canvas) {
+  canvas.clearRect(0, 0, WIDTH, HEIGHT);
 }
 
 function drawCircle(x, y, r) {
 	clear();
-	wctx.beginPath();
-	wctx.arc(x,y,r,0,Math.PI * 2,false);
-	wctx.closePath();
-	wctx.fillStyle = letoli.color;
-	wctx.fill();
-}
-
-function moveLetoli(dx,dy) {
-	if(letoli.x + dx > WIDTH || letoli.y + dy > HEIGHT) {
-		return;
-	}
-
-	drawCircle(letoli.x + dx, letoli.y + dy, SIZE);
-	letolix = letoli.x + dx;
-	letoliy = letoli.y + dy;
-}
-
-function move() {
-	moveLetoli(5,5);
-	console.log("move? ", letoli.x, letoli.y);
+	sctx.beginPath();
+	sctx.arc(x,y,r,0,Math.PI * 2,false);
+	sctx.closePath();
+	sctx.fillStyle = letoli.color;
+	sctx.fill();
 }
 
 function drawLines() {
-	wctx.strokeStyle = "#000000";
+	sctx.strokeStyle = "#000000";
 	
 	//tree boundary
-	wctx.beginPath();
-	wctx.moveTo(430,0);
-	wctx.lineTo(430,510);
-	wctx.stroke();
+	sctx.beginPath();
+	sctx.moveTo(430,0);
+	sctx.lineTo(430,510);
+	sctx.stroke();
 	
 	//good berries
-	wctx.beginPath();
-	wctx.moveTo(70,0);
-	wctx.lineTo(70,70);
-	wctx.lineTo(240,70);
-	wctx.lineTo(240,0);
-	wctx.stroke();
+	sctx.beginPath();
+	sctx.moveTo(70,0);
+	sctx.lineTo(70,70);
+	sctx.lineTo(240,70);
+	sctx.lineTo(240,0);
+	sctx.stroke();
 
 	//bad berries
-	wctx.beginPath();
-	wctx.moveTo(240,0);
-	wctx.lineTo(240,70);
-	wctx.lineTo(400,70);
-	wctx.lineTo(400,0);
-	wctx.stroke();
+	sctx.beginPath();
+	sctx.moveTo(240,0);
+	sctx.lineTo(240,70);
+	sctx.lineTo(400,70);
+	sctx.lineTo(400,0);
+	sctx.stroke();
 	
 	//safe water boundary
-	wctx.beginPath();
-	wctx.moveTo(0,70);
-	wctx.lineTo(220,450);
-	wctx.stroke();
+	sctx.beginPath();
+	sctx.moveTo(0,70);
+	sctx.lineTo(220,450);
+	sctx.stroke();
 
 	//death water boundary
-	wctx.beginPath();
-	wctx.moveTo(0,140);
-	wctx.lineTo(170,450);
-	wctx.stroke();			
+	sctx.beginPath();
+	sctx.moveTo(0,140);
+	sctx.lineTo(170,450);
+	sctx.stroke();			
 	
 }
 
 function treeShade() {
-	wctx.fillStyle = 'rgba(24,196,30,.5)';
+	sctx.fillStyle = FORESTCOLOR;
 	
-	wctx.beginPath();
-	wctx.moveTo(430,0);
-	wctx.lineTo(430,510);
-	wctx.lineTo(510,450);
-	wctx.lineTo(510,0);
-	wctx.fill();
+	sctx.beginPath();
+	sctx.moveTo(430,0);
+	sctx.lineTo(430,510);
+	sctx.lineTo(510,450);
+	sctx.lineTo(510,0);
+	sctx.fill();
 }
 
 function goodBerryShade() {
-	wctx.fillStyle = 'rgba(255,0,0,.5)';
+	sctx.fillStyle = SAFEBERRYCOLOR;
 	
-	wctx.beginPath();
-	wctx.moveTo(70,0);
-	wctx.lineTo(70,70);
-	wctx.lineTo(240,70);
-	wctx.lineTo(240,0);
-	wctx.fill();
+	sctx.beginPath();
+	sctx.moveTo(70,0);
+	sctx.lineTo(70,70);
+	sctx.lineTo(240,70);
+	sctx.lineTo(240,0);
+	sctx.fill();
 }
 
 function badBerryShade() {
-	wctx.fillStyle = 'rgba(255,0,92,.5)';
+	sctx.fillStyle = DEATHBERRYCOLOR;
 	
-	wctx.beginPath();
-	wctx.moveTo(240,0);
-	wctx.lineTo(240,70);
-	wctx.lineTo(400,70);
-	wctx.lineTo(400,0);
-	wctx.fill();
+	sctx.beginPath();
+	sctx.moveTo(240,0);
+	sctx.lineTo(240,70);
+	sctx.lineTo(400,70);
+	sctx.lineTo(400,0);
+	sctx.fill();
 }
 
 function safeWaterShade() {
-	wctx.fillStyle = 'rgba(65,58,165,.5)';
+	sctx.fillStyle = SAFEWATERCOLOR;
 	
-	wctx.beginPath();
-	wctx.moveTo(0,70);
-	wctx.lineTo(0,140);
-	wctx.lineTo(170,450);
-	wctx.lineTo(220,450);
-	wctx.fill();
+	sctx.beginPath();
+	sctx.moveTo(0,70);
+	sctx.lineTo(0,140);
+	sctx.lineTo(170,450);
+	sctx.lineTo(220,450);
+	sctx.fill();
 }
 
 function dangerousWaterShade() {
-	wctx.fillStyle = 'rgba(8,0,124,.5)';
+	sctx.fillStyle = DEATHWATERCOLOR;
 	
-	wctx.beginPath();
-	wctx.moveTo(0,140);
-	wctx.lineTo(0,450);
-	wctx.lineTo(170,450);
-	wctx.fill();
+	sctx.beginPath();
+	sctx.moveTo(0,140);
+	sctx.lineTo(0,450);
+	sctx.lineTo(170,450);
+	sctx.fill();
 }
 
 function shade() {
+	clear(sctx);
+	drawLines();
+	
 	treeShade();
 	goodBerryShade();	
 	badBerryShade();	
