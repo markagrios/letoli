@@ -1,3 +1,4 @@
+console.log("draw_brain.js");
 
 function drawCircle(x, y, r) {
 	clear();
@@ -8,4 +9,3 @@ function drawCircle(x, y, r) {
 	wctx.fill();
 }
 
-console.log("draw_brain.js");

@@ -1,16 +1,12 @@
+console.log("draw_world.js");
 
 function init() {
-	console.log("draw_world.js");
-
 	// draws map on the landscape canvas. This one won't change.
 	var img = new Image();
 	img.onload = function () {
 		lctx.drawImage(img, 0, 0);
 	}
 	img.src = "letoli_map.png";
-
-	//setInterval(function(){ alert("Hello"); }, 3000);
-	//drawCircle(126,126,10);
 	
 	drawLines();
 }
@@ -20,12 +16,12 @@ function clear(canvas) {
 }
 
 function drawCircle(x, y, r) {
-	clear();
-	sctx.beginPath();
-	sctx.arc(x,y,r,0,Math.PI * 2,false);
-	sctx.closePath();
-	sctx.fillStyle = letoli.color;
-	sctx.fill();
+	//clear();
+	wctx.beginPath();
+	wctx.arc(x,y,r,0,Math.PI * 2,false);
+	wctx.closePath();
+	wctx.fillStyle = letoli.color;
+	wctx.fill();
 }
 
 function drawLines() {
@@ -121,7 +117,7 @@ function dangerousWaterShade() {
 	sctx.fill();
 }
 
-function shade() {
+function drawRegions() {
 	clear(sctx);
 	drawLines();
 	

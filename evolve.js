@@ -1,3 +1,5 @@
+console.log("evolve.js");
+
 
 function evolve() {
 	// the actual calculations and stuff

@@ -1,3 +1,5 @@
+console.log("script.js");
+
 const WIDTH = 510;
 const HEIGHT = 450;
 const LSIZE = 10;
@@ -30,24 +32,21 @@ var visualData = vctx.createImageData(WIDTH,HEIGHT);
 
 var stepcount = 0;
 
-var inDeathWater = false;
-var inSafeWater = false;
-var inDeathBerry = false;
-var inSafeBerry = false;
-var inForest = false;
-var inNeutral = true;
-
-console.log("script.js");
 
 var letoli = {			// would it be easier/more helpful if stats were between 0 and 1?
-	x : 0,
-	y : 0,
-	health : 100,
+	x : 10,
+	y : 300,
+	health : 1,
 	food : 0,
 	water: 0,
 	sleep: 0,
 	color: "#c9c9c9",
-	setStats : function() {
+	setStats : function() {				// commas, don't forget
+		
+		//set letoli.color depending on health
+		
+		getPixelTerrain(this.x,this.y);
+		
 		if(inDeathWater == true) {
 			this.health = 0;
 		}
@@ -66,69 +65,48 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		if(inNeutral == true) {
 			console.log("in neutral area");
 		}
-	}
+	},
+	
+	getLocation : function() {
+		return getPixelTerrain(this.x,this.y);
+	},
+	
 };
 
 function getPixelTerrain(x,y) { //use the shade canvas to find the color of a certain pixel
-	index = ((x + y * landscapeData.width) * 4);
+	drawRegions();
 	
-	shade();
+	var shadeData = sctx.createImageData(WIDTH,HEIGHT);
+	console.log(shadeData.data[index+0] + " " + shadeData.data[index+1] + " " + shadeData.data[index+2]);
 	
-	if(landscapeData.data[index+2] == 200) { //if in death water
-		inDeathWater = true;
-		inSafeWater = false;
-		inDeathBerry = false;
-		inSafeBerry = false;
-		inForest = false;
-		inNeutral = false;
-		return inDeathWater;
+	var index = ((x + y * shadeData.width) * 4);
+	var r = shadeData.data[index+0];
+	var g = shadeData.data[index+1];
+	var b = shadeData.data[index+2];
+	var location = "";
+	
+	if(b == 200) { //if in death water
+		location = "deathwater";
 	}
-	if(landscapeData.data[index+2] == 100) { //if in safe water
-		inDeathWater = false;
-		inSafeWater = true;
-		inDeathBerry = false;
-		inSafeBerry = false;
-		inForest = false;
-		inNeutral = false;
-		return inSafeWater;
+	if(b == 100) { //if in safe water
+		location = "safewater";
 	}
-	if(landscapeData.data[index+0] == 100 && landscapeData.data[index+2] == 100) { //if in death berry
-		inDeathWater = false;
-		inSafeWater = false;
-		inDeathBerry = true;
-		inSafeBerry = false;
-		inForest = false;
-		inNeutral = false;
-		return inDeathBerry;
+	if(r == 100 && landscapeData.data[index+2] == 100) { //if in death berry
+		location = "deathberry";
 	}	
-	if(landscapeData.data[index+0] == 200) { //if in safe berry
-		inDeathWater = false;
-		inSafeWater = false;
-		inDeathBerry = false;
-		inSafeBerry = true;
-		inForest = false;
-		inNeutral = false;
-		return inSafeWater;
+	if(r == 200) { //if in safe berry
+		location = "safeberry";
 	}
-	if(landscapeData.data[index+1] == 200) { //if in forest
-		inDeathWater = false;
-		inSafeWater = false;
-		inDeathBerry = false;
-		inSafeBerry = false;
-		inForest = true;
-		inNeutral = false;
-		return inForest;
+	if(g == 200) { //if in forest
+		location = "forest";
+	} else {
+		location = "neutral";
 	}
-	
-	inDeathWater = false;
-	inSafeWater = false;
-	inDeathBerry = false;
-	inSafeBerry = false;
-	inForest = false;
-	inNeutral = true;
-	return inNeutral;
 	
 	clear(sctx);
+	console.log(location);
+	
+	return location;
 
 }
 
@@ -136,8 +114,16 @@ function innerHTML(id,text) { //when calling function, must put parameters in qu
 	document.getElementById(id).innerHTML = text;
 }
 
-getPixelTerrain(126,126);
+function drawLetoli() {		//location as well as color depending on health
+	drawCircle(letoli.x,letoli.y,LSIZE);
+}
 
+//getPixelTerrain(126,126);
+
+drawLetoli();
+console.log("--");
+letoli.getLocation();
+console.log("--");
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neutral NETWORK//////////////// 
 //setInterval(evolve, DELAY);
