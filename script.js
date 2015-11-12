@@ -54,13 +54,13 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.health = 0;
 		}
 		if(inSafeWater == true) {
-			this.water += 25;
+			this.water += 0.25;
 		}
 		if(inDeathBerry == true) {
-			this.health -= 20;
+			this.health -= 0.20;
 		}
 		if(inSafeBerry == true) {
-			this.health += 20;
+			this.health += 0.20;
 		}
 		if(inForest == true) {
 			//no idea what to put here
