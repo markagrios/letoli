@@ -8,7 +8,7 @@ function init() {
 	}
 	img.src = "letoli_map.png";
 	
-	drawLines();
+	//drawLines();
 }
 
 function clear(canvas) {
@@ -128,7 +128,22 @@ function drawRegions() {
 	dangerousWaterShade();
 }
 
+function drawLetoli() {		//location as well as color depending on health
+	clear(wctx);
+	drawCircle(letoli.x,letoli.y,LSIZE);
+}
 
+function drawNight() {
+	sctx.fillStyle = 'rgba(100,100,100,.7)';
+	
+	sctx.beginPath();
+	sctx.moveTo(0,0);
+	sctx.lineTo(0,450);
+	sctx.lineTo(510,450);
+	sctx.lineTo(510,0);
+	
+	sctx.fill();
+}
 
 
 
