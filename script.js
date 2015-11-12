@@ -3,39 +3,42 @@ console.log("script.js");
 const WIDTH = 510;
 const HEIGHT = 450;
 const LSIZE = 10;
+const LSTARTX = 240;
+const LSTARTY = 240;
 
 const DEATHWATERCOLOR = 'rgba(0,0,200,.4)';
-const SAFEWATERCOLOR = 'rgba(0,0,100,.4)';
+const SAFEWATERCOLOR =  'rgba(0,0,100,.4)';
 const DEATHBERRYCOLOR = 'rgba(100,0,100,.4)';
-const SAFEBERRYCOLOR = 'rgba(200,0,0,.4)';
-const FORESTCOLOR = 'rgba(0,200,0,.4)';
+const SAFEBERRYCOLOR =  'rgba(200,0,0,.4)';
+const FORESTCOLOR   =   'rgba(0,200,0,.4)';
 
 const DELAY = 100; //time delay in milleseconds for animations and step
 
-var landscape = document.getElementById('landscape');
+var landscape = document.getElementById("landscape");
 var lctx = landscape.getContext("2d");
 
-var world = document.getElementById('world');
+var world = document.getElementById("world");
 var wctx = world.getContext("2d");
 
-var shade = document.getElementById('shade');
+var shade = document.getElementById("shade");
 var sctx = shade.getContext("2d");
 
-var visual = document.getElementById('visual');
+var visual = document.getElementById("visual");
 var vctx = visual.getContext("2d");
 
+/*
 var landscapeData = lctx.createImageData(WIDTH,HEIGHT);
 var worldData = wctx.createImageData(WIDTH,HEIGHT);
 var shadeData = sctx.createImageData(WIDTH,HEIGHT);
 var visualData = vctx.createImageData(WIDTH,HEIGHT);
-
+*/
 
 var stepcount = 0;
 
 
 var letoli = {			// would it be easier/more helpful if stats were between 0 and 1?
-	x : 10,
-	y : 300,
+	x : 440,
+	y : 10,
 	health : 1,
 	food : 0,
 	water: 0,
@@ -73,41 +76,67 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	
 };
 
-function getPixelTerrain(x,y) { //use the shade canvas to find the color of a certain pixel
-	drawRegions();
+function getPixelTerrain(x,y) {
 	
-	var shadeData = sctx.createImageData(WIDTH,HEIGHT);
-	console.log(shadeData.data[index+0] + " " + shadeData.data[index+1] + " " + shadeData.data[index+2]);
-	
-	var index = ((x + y * shadeData.width) * 4);
-	var r = shadeData.data[index+0];
-	var g = shadeData.data[index+1];
-	var b = shadeData.data[index+2];
 	var location = "";
 	
-	if(b == 200) { //if in death water
+	if((x <= 240 && 70 <= x) && (y <= 70 && 0 <= y)) {
+		location = "safeberry";
+	} else if((x <= 400 && 240 <= x) && (y <= 70 && 0 <= y)) {
+		location = "deathberry";
+	} else if((x <= 510 && 430 <= x) && (y <= 450 && 0 <= y)) {
+		location = "forest";
+	} else if((y <= Math.round(1.823*x + 140)) && (y >= Math.round(1.727*x + 70))) {
+		location = "safewater";
+	} else if((y <= 450) && (y >= Math.round(1.823*x + 140))) {
+		location = "deathwater";
+	} else {
+		location = "neutral";
+	}
+	
+	return location;
+	
+	/*
+	drawRegions();
+	
+	// Get pixel data 
+	var shadeData = sctx.getImageData(x, y, WIDTH, HEIGHT);
+	//var index = ((x + y * shadeData.width) * 4);
+	var index = ((y*(shadeData.width*4)) + (x*4));
+	//color at (x,y) position
+	var color = [];
+	color['red'] =   shadeData.data[index + 0];
+	color['green'] = shadeData.data[index + 1];
+	color['blue'] =  shadeData.data[index + 2];
+	color['alpha'] = shadeData.data[index + 3];
+	
+	console.log(color);
+	
+	var location = "";
+	
+	if(color['red'] == 200) { //if in death water
 		location = "deathwater";
 	}
-	if(b == 100) { //if in safe water
+	if(color['blue'] == 100) { //if in safe water
 		location = "safewater";
 	}
-	if(r == 100 && landscapeData.data[index+2] == 100) { //if in death berry
+	if(color['red'] == 100 && color['blue'] == 100) { //if in death berry
 		location = "deathberry";
 	}	
-	if(r == 200) { //if in safe berry
+	if(color['red'] == 200) { //if in safe berry
 		location = "safeberry";
 	}
-	if(g == 200) { //if in forest
+	if(color['green'] == 200) { //if in forest
 		location = "forest";
 	} else {
 		location = "neutral";
 	}
 	
-	clear(sctx);
+	//clear(sctx);
 	console.log(location);
 	
 	return location;
-
+	*/
 }
 
 function innerHTML(id,text) { //when calling function, must put parameters in quotes | innerHTML("testp","walnuts");
@@ -119,10 +148,11 @@ function drawLetoli() {		//location as well as color depending on health
 }
 
 //getPixelTerrain(126,126);
-
+letoli.x = 40;
+letoli.y = 150;
 drawLetoli();
 console.log("--");
-letoli.getLocation();
+console.log(letoli.getLocation());
 console.log("--");
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neutral NETWORK//////////////// 
