@@ -42,24 +42,24 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		
 		//set letoli.color depending on health
 		
-		getPixelTerrain(this.x,this.y);
+		location = getPixelTerrain(this.x,this.y);
 		
-		if(inDeathWater == true) {
+		if(location == "deathwater") {
 			this.health = 0;
 		}
-		if(inSafeWater == true) {
+		if(location == "safewater") {
 			this.water += 0.25;
 		}
-		if(inDeathBerry == true) {
+		if(location == "deathberry") {
 			this.health -= 0.20;
 		}
-		if(inSafeBerry == true) {
+		if(location == "safeberry") {
 			this.health += 0.20;
 		}
-		if(inForest == true) {
+		if(location == "forest") {
 			//no idea what to put here
 		}
-		if(inNeutral == true) {
+		if(location == "neutral") {
 			console.log("in neutral area");
 		}
 	
@@ -79,26 +79,49 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 
 	sleep : function() {
-		getPixelTerrain(this.x,this.y);
+		location = getPixelTerrain(this.x,this.y);
 		
-		if(inDeathWater == true) {
+		if(location == "deathwater") {
 			this.health = 0;
 		}
-		if(inSafeWater == true) {
+		if(location == "safewater") {
 			this.sleep -= 0.2;
 			this.health -= 0.2;
 		}
-		if(inDeathBerry == true) {
+		if(location == "deathberry") {
 			this.sleep -= 0.10;
 		}
-		if(inSafeBerry == true) {
+		if(location == "safeberry") {
 			this.sleep -= 0.10;
 		}
-		if(inForest == true) {
+		if(location == "forest") {
 			this.sleep += 0.5;
 		}
-		if(inNeutral == true) {
+		if(location == "neutral") {
 			this.sleep += 0.2;
+		}
+	},
+	
+	eat : function() {
+		location = getPixelTerrain(this.x,this.y);
+		
+		if(location == "deathwater") {
+			this.health = 0;
+		}
+		if(location == "safewater") {
+			this.health += 0;
+		}
+		if(location == "deathberry") {
+			this.sleep -= 0.20;
+		}
+		if(location == "safeberry") {
+			this.sleep += 0.25;
+		}
+		if(location == "forest") {
+			this.sleep += 0.1;
+		}
+		if(location == "neutral") {
+			this.sleep += 0;
 		}
 	},
 };
