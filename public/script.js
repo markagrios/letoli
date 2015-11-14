@@ -31,8 +31,8 @@ var stepcount = 0;
 var isNight = false;
 
 var letoli = {			// would it be easier/more helpful if stats were between 0 and 1?
-	x : 440,
-	y : 10,
+	x : LSTARTX,
+	y : LSTARTY,
 	health : 1,
 	food : 0,
 	water: 0,
