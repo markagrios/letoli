@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "neural network that LEarns TO LIve",
   "main": "script.js",
-  "dependencies": {},
+  "dependencies": {
+    "node-static": "^0.7.7"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
