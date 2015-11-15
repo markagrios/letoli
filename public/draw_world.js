@@ -134,7 +134,9 @@ function drawLetoli() {		//location as well as color depending on health
 }
 
 function drawNight() {
-	sctx.fillStyle = 'rgba(100,100,100,.7)';
+	clear(sctx);
+	
+	sctx.fillStyle = 'rgba(80,80,80,.5)';
 	
 	sctx.beginPath();
 	sctx.moveTo(0,0);
@@ -145,5 +147,18 @@ function drawNight() {
 	sctx.fill();
 }
 
+function unDrawNight() {
+	clear(sctx);
+	
+	sctx.fillStyle = 'rgba(100,100,100,.0)';
+	
+	sctx.beginPath();
+	sctx.moveTo(0,0);
+	sctx.lineTo(0,450);
+	sctx.lineTo(510,450);
+	sctx.lineTo(510,0);
+	
+	sctx.fill();
+}
 
 

@@ -105,6 +105,8 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	eat : function() {
 		location = getPixelTerrain(this.x,this.y);
 		
+		console.log(location);
+		
 		if(location == "deathwater") {
 			this.health = 0;
 		}
@@ -117,11 +119,34 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		if(location == "safeberry") {
 			this.sleep += 0.25;
 		}
-		if(location == "forest") {
+		if(location == "forest") { //maybe make RNG with health, food, water
 			this.sleep += 0.1;
 		}
 		if(location == "neutral") {
 			this.sleep += 0;
+		}
+	},
+	
+	drink : function() {
+		location = getPixelTerrain(this.x,this.y);
+		
+		if(location == "deathwater") {
+			this.health = 0;
+		}
+		if(location == "safewater") {
+			this.water += 0.4;
+		}
+		if(location == "deathberry") {
+			this.water += 0;
+		}
+		if(location == "safeberry") {
+			this.water += 0;
+		}
+		if(location == "forest") {
+			this.water += 0;
+		}
+		if(location == "neutral") {
+			this.water += 0;
 		}
 	},
 };
