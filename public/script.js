@@ -42,7 +42,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		
 		//set letoli.color depending on health
 		
-		location = getPixelTerrain(this.x,this.y);
+		var location = getPixelTerrain(this.x,this.y);
 		
 		if(location == "deathwater") {
 			this.health = 0;
@@ -79,7 +79,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 
 	sleep : function() {
-		location = getPixelTerrain(this.x,this.y);
+		var location = getPixelTerrain(this.x,this.y);
 		
 		if(location == "deathwater") {
 			this.health = 0;
@@ -103,7 +103,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 	
 	eat : function() {
-		location = getPixelTerrain(this.x,this.y);
+		var location = getPixelTerrain(this.x,this.y);
 		
 		console.log(location);
 		
@@ -128,7 +128,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 	
 	drink : function() {
-		location = getPixelTerrain(this.x,this.y);
+		var location = getPixelTerrain(this.x,this.y);
 		
 		if(location == "deathwater") {
 			this.health = 0;
@@ -189,8 +189,9 @@ clear(sctx);
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neutral NETWORK//////////////// 
 //setInterval(evolve, DELAY);
 function live() {
-	letoli.move(10,40);
-	console.log(letoli.getLocation());
+	letoli.move(-10,4);
+	letoli.setStats();
+	console.log(letoli);
 }
 
 //setInterval(live, 100);
