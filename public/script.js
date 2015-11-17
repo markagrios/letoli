@@ -26,7 +26,6 @@ var sctx = shade.getContext("2d");
 var visual = document.getElementById("visual");
 var vctx = visual.getContext("2d");
 
-
 var stepcount = 0;
 var isNight = false;
 
