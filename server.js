@@ -6,6 +6,7 @@
  */
 
 // modules
+var fs = require( 'fs' );
 var static = require( 'node-static' ),
     port = 8080,
     http = require( 'http' );
@@ -25,3 +26,9 @@ http.createServer( function ( request, response ) {
 
 
 console.log("running on port " + port);
+
+fs.writeFile('test.txt', 'Hello World!', function (err) {
+    if (err) 
+        return console.log(err);
+    console.log('saved');
+});
