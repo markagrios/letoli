@@ -1,12 +1,15 @@
 console.log("evolve.js");
 
+function sigmoid(t) {
+    return 1/(1+Math.pow(Math.E, -t));
+}
 
 function evolve() {
 	// the actual calculations and stuff
 	
-	letoli.setStats();
+	letoli.decrement();
 	
-	if(letoli.health == 0) {
+	if(letoli.health <= 0) {
 		//how do I update the genome and restart?
 	}
 	

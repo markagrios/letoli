@@ -37,31 +37,11 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	water: 0,
 	sleep: 0,
 	color: "#c9c9c9",
-	setStats : function() {				// commas, don't forget
-		
-		//set letoli.color depending on health
-		
-		var location = getPixelTerrain(this.x,this.y);
-		
-		if(location == "deathwater") {
-			this.health = 0;
-		}
-		if(location == "safewater") {
-			this.water += 0.25;
-		}
-		if(location == "deathberry") {
-			this.health -= 0.20;
-		}
-		if(location == "safeberry") {
-			this.health += 0.20;
-		}
-		if(location == "forest") {
-			//no idea what to put here
-		}
-		if(location == "neutral") {
-			console.log("in neutral area");
-		}
-	
+	decrement : function() {				// commas, don't forget
+		this.health -= .1;
+		this.sleep -= .1;
+		this.food -= .1;
+		this.water -= .1;
 	},
 	
 	getLocation : function() {
@@ -78,7 +58,8 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 
 	sleep : function() {
-		var location = getPixelTerrain(this.x,this.y);
+		//var location = getPixelTerrain(this.x,this.y);
+		var location = this.getLocation();
 		
 		if(location == "deathwater") {
 			this.health = 0;
@@ -102,7 +83,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 	
 	eat : function() {
-		var location = getPixelTerrain(this.x,this.y);
+		var location = this.getLocation();
 		
 		console.log(location);
 		
@@ -127,7 +108,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 	
 	drink : function() {
-		var location = getPixelTerrain(this.x,this.y);
+		var location = this.getLocation();
 		
 		if(location == "deathwater") {
 			this.health = 0;
