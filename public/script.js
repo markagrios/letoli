@@ -33,15 +33,16 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	x : LSTARTX,
 	y : LSTARTY,
 	health : 1,
-	food : 0,
-	water: 0,
-	sleep: 0,
+	food : 1,
+	water: 1,
+	sleep: 1,
 	color: "#c9c9c9",
 	decrement : function() {				// commas, don't forget
-		this.health -= .1;
-		this.sleep -= .1;
+		this.sleep -= .1; // need to catch if any stats are < 0
 		this.food -= .1;
 		this.water -= .1;
+		this.health -= (Math.cbrt(this.food * this.water * this.sleep));
+		console.log(health);
 	},
 	
 	getLocation : function() {
