@@ -38,10 +38,20 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	sleep: 1,
 	color: "#c9c9c9",
 	decrement : function() {				// commas, don't forget
-		this.sleep -= .1; // need to catch if any stats are < 0
-		this.food -= .1;
-		this.water -= .1;
-		this.health -= (Math.cbrt(this.food * this.water * this.sleep));
+		this.sleep -= .05;   // need to catch if any stats are < 0
+		
+		if(!(this.water < .05)) {
+			this.water -= .05;		
+			this.water = 1 * (this.water).toFixed(3);	// multiply by one to make it a number not a string
+		} else {this.water = 0;}
+
+		if(!(this.food < .05)) {
+			this.food -= .05;		
+			this.food = 1 * (this.food).toFixed(3);	// multiply by one to make it a number not a string
+		} else {this.food = 0;}		
+		
+		console.log(this.sleep, this.food, this.water);
+		this.health = (Math.cbrt(this.food * this.water * this.sleep));
 		console.log(health);
 	},
 	
@@ -59,7 +69,6 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	},
 
 	sleep : function() {
-		//var location = getPixelTerrain(this.x,this.y);
 		var location = this.getLocation();
 		
 		if(location == "deathwater") {
@@ -67,7 +76,6 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		}
 		if(location == "safewater") {
 			this.sleep -= 0.2;
-			this.health -= 0.2;
 		}
 		if(location == "deathberry") {
 			this.sleep -= 0.10;
@@ -95,16 +103,16 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.health += 0;
 		}
 		if(location == "deathberry") {
-			this.sleep -= 0.20;
+			this.food -= 0.20;
 		}
 		if(location == "safeberry") {
-			this.sleep += 0.25;
+			this.food += 0.25;
 		}
 		if(location == "forest") { //maybe make RNG with health, food, water
-			this.sleep += 0.1;
+			this.food += 0.1;
 		}
 		if(location == "neutral") {
-			this.sleep += 0;
+			this.food += 0;
 		}
 	},
 	
