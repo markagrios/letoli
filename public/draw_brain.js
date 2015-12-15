@@ -37,13 +37,21 @@ function traceCircle(x, y, r) {
 	vctx.stroke();
 }
 
-function connectNodes(x1, y1, x2, y2, color) {
-	vctx.strokeStyle = color;
-	
+function connectNodesG(x1, y1, x2, y2) {
+	vctx.beginPath();
+	vctx.strokeStyle = 'rgba(0,255,0,1)';
 	vctx.moveTo(x1,y1);
 	vctx.lineTo(x2,y2);
 	vctx.stroke()
 }
+function connectNodesR(x1, y1, x2, y2) {
+	vctx.beginPath();
+	vctx.strokeStyle = 'rgba(255,0,0,1)';
+	vctx.moveTo(x1,y1);
+	vctx.lineTo(x2,y2);
+	vctx.stroke()
+}
+
 
 // Input layer
 
@@ -86,5 +94,5 @@ vctx.lineTo(90,10);
 vctx.stroke();
 */
 
-connectNodes(ISLEEPx,ISLEEPy,OMOVEDOWNx,OMOVEDOWNy,"#00ff00");
-connectNodes(IHEALTHx,IHEALTHy,OEATx,OEATy,"#000000");
+connectNodesG(IFOODx,IFOODy,OMOVEDOWNx,OMOVEDOWNy);
+connectNodesR(IHEALTHx,IHEALTHy,OEATx,OEATy);

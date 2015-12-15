@@ -38,7 +38,10 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	sleep: 1,
 	color: "#c9c9c9",
 	decrement : function() {				// commas, don't forget
-		this.sleep -= .05;   // need to catch if any stats are < 0
+		if(!(this.sleep < .05)) {
+			this.sleep -= .05;		
+			this.sleep = 1 * (this.water).toFixed(3);	// multiply by one to make it a number not a string
+		} else {this.sleep = 0;}		
 		
 		if(!(this.water < .05)) {
 			this.water -= .05;		
@@ -52,7 +55,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		
 		console.log(this.sleep, this.food, this.water);
 		this.health = (Math.cbrt(this.food * this.water * this.sleep));
-		console.log(health);
+		//console.log(health);
 	},
 	
 	getLocation : function() {
@@ -67,35 +70,12 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	
 		drawLetoli();	
 	},
-
-	sleep : function() {
-		var location = this.getLocation();
-		
-		if(location == "deathwater") {
-			this.health = 0;
-		}
-		if(location == "safewater") {
-			this.sleep -= 0.2;
-		}
-		if(location == "deathberry") {
-			this.sleep -= 0.10;
-		}
-		if(location == "safeberry") {
-			this.sleep -= 0.10;
-		}
-		if(location == "forest") {
-			this.sleep += 0.5;
-		}
-		if(location == "neutral") {
-			this.sleep += 0.2;
-		}
-	},
 	
 	eat : function() {
 		var location = this.getLocation();
 		
-		console.log(location);
-		
+		console.log("eat");
+				
 		if(location == "deathwater") {
 			this.health = 0;
 		}
@@ -119,6 +99,8 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	drink : function() {
 		var location = this.getLocation();
 		
+		console.log("drink");
+		
 		if(location == "deathwater") {
 			this.health = 0;
 		}
@@ -138,6 +120,32 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.water += 0;
 		}
 	},
+	
+	sleep : function() {
+		var location = this.getLocation();
+		
+		console.log("sleep");
+		
+		if(location == "deathwater") {
+			this.health = 0;
+		}
+		if(location == "safewater") {
+			this.sleep -= 0.2;
+		}
+		if(location == "deathberry") {
+			this.sleep -= 0.10;
+		}
+		if(location == "safeberry") {
+			this.sleep -= 0.10;
+		}
+		if(location == "forest") {
+			this.sleep += 0.5;
+		}
+		if(location == "neutral") {
+			this.sleep += 0.2;
+		}
+	},
+	
 };
 
 function getPixelTerrain(x,y) {
@@ -184,6 +192,8 @@ function live() {
 }
 
 //setInterval(live, 100);
-
+letoli.sleep();
+letoli.eat();
+letoli.drink();
 
 

@@ -4,6 +4,19 @@ function sigmoid(t) {
     return 1/(1+Math.pow(Math.E, -t));
 }
 
+
+var node = {
+	
+};
+
+
+
+
+
+
+
+
+
 function evolve() {
 	// the actual calculations and stuff
 	
