@@ -37,6 +37,13 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	water: 1,
 	sleep: 1,
 	color: "#c9c9c9",
+	
+	stats : function() {
+		this.health = (Math.cbrt(this.food * this.water * this.sleep));
+		console.log("food " + this.food, "water " + this.water, "sleep " + this.sleep);
+		console.log(this.health);
+	},
+	
 	decrement : function() {				// commas, don't forget
 		if(!(this.sleep < .05)) {
 			this.sleep -= .05;		
@@ -55,7 +62,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		
 		console.log(this.sleep, this.food, this.water);
 		this.health = (Math.cbrt(this.food * this.water * this.sleep));
-		//console.log(health);
+		console.log(this.health);
 	},
 	
 	getLocation : function() {
@@ -83,13 +90,21 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.health += 0;
 		}
 		if(location == "deathberry") {
-			this.food -= 0.20;
+			if(this.food - 0.20 < 0) {
+				this.food = 0;
+			} else {this.food -= 0.20;}
+				
 		}
 		if(location == "safeberry") {
-			this.food += 0.25;
+			if(this.food + 0.25 > 1) {
+				this.food = 1;
+			} else {this.food += 0.25;}
 		}
 		if(location == "forest") { //maybe make RNG with health, food, water
-			this.food += 0.1;
+			if(this.food + 0.1 > 1) {
+				this.food = 1;
+			} else {this.food += 0.1;}
+			
 		}
 		if(location == "neutral") {
 			this.food += 0;
@@ -105,7 +120,10 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.health = 0;
 		}
 		if(location == "safewater") {
-			this.water += 0.4;
+			if(this.water + 0.4 > 1) {
+				this.water = 1;	
+			} else {this.water += 0.4;}
+			
 		}
 		if(location == "deathberry") {
 			this.water += 0;
@@ -121,7 +139,7 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		}
 	},
 	
-	sleep : function() {
+	rest : function() {
 		var location = this.getLocation();
 		
 		console.log("sleep");
@@ -130,19 +148,29 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.health = 0;
 		}
 		if(location == "safewater") {
-			this.sleep -= 0.2;
+			if(this.sleep - 0.2 < 0) {
+				this.sleep = 0;
+			} else {this.sleep -= 0.20;}
 		}
 		if(location == "deathberry") {
-			this.sleep -= 0.10;
+			if(this.sleep - 0.1 < 0) {
+				this.sleep = 0;
+			} else {this.sleep -= 0.10;}
 		}
 		if(location == "safeberry") {
-			this.sleep -= 0.10;
+			if(this.sleep - 0.1 < 0) {
+				this.sleep = 0;
+			} else {this.sleep -= 0.10;}
 		}
 		if(location == "forest") {
-			this.sleep += 0.5;
+			if(this.sleep + 0.5 > 1) {
+				this.sleep = 1;
+			} else {this.sleep += 0.50;}
 		}
 		if(location == "neutral") {
-			this.sleep += 0.2;
+			if(this.sleep + 0.2 > 1) {
+				this.sleep = 1;
+			} else {this.sleep += 0.20;}
 		}
 	},
 	
@@ -192,8 +220,6 @@ function live() {
 }
 
 //setInterval(live, 100);
-letoli.sleep();
-letoli.eat();
-letoli.drink();
+
 
 

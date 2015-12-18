@@ -5,7 +5,7 @@ function sigmoid(t) {
 }
 
 
-var node = {
+var neuron = {
 	
 };
 
