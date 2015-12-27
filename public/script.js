@@ -214,9 +214,9 @@ clear(sctx);
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neutral NETWORK//////////////// 
 //setInterval(evolve, DELAY);
 function live() {
-	letoli.move(-10,4);
-	letoli.setStats();
-	console.log(letoli);
+	letoli.move(-1,1);
+	letoli.stats();
+	//console.log(letoli);
 }
 
 //setInterval(live, 100);
