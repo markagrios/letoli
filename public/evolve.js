@@ -37,9 +37,16 @@ var W = [
 		[6,3,8,1],
 		[4,2,7,2]
 		];
+		
+// augment X onto W, W goes from 3x4 to 3x5
 
-var z = numeric.dot(X,W);
-console.log(z);
+W = numeric.transpose(W);
+
+W.push(X);
+
+W = numeric.transpose(W);
+
+console.log(W);
 
 
 
