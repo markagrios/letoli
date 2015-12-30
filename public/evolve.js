@@ -3,8 +3,8 @@ console.log("evolve.js");
 // Hyperparameters
 
 // Lessthanhyper-parameters, I don't even know
-var BIAS = 0.5;
-var THRESHOLD = 2;
+var BIAS = 2;
+var THRESHOLD = 4;
 
 
 
@@ -31,23 +31,54 @@ function neuron(a) {
 	
 }
 
-var X = [.75,.50,.90];
+var X = [0,0,0];
+var Y = [0,0,0,0];
 var W = [
 		[1,4,6,2],
 		[6,3,8,1],
 		[4,2,7,2]
 		];
-		
-// augment X onto W, W goes from 3x4 to 3x5
 
-W = numeric.transpose(W);
+function addColumn(a,b) { // add b to be a new column of a
+	at = numeric.transpose(a);
+	at.push(b);
+	ab = numeric.transpose(at);
+	
+	return ab;
+}
 
-W.push(X);
+function addRow(a,b) {
+	a.push(b);
+	return a;
+}
 
-W = numeric.transpose(W);
+function activity(a) { // input matrix, return matrix
+	for(var i = 0; i < a.length; i++) {
+		for(var j = 0; j < a[i].length; j++) {
+			if(a[i][j] - BIAS > THRESHOLD) {
+				// do nothing
+			} else {
+				a[i][j] = 0;
+			}
+		}
+	}
+	return a; // ?
+}
 
-console.log(W);
+//console.log(addColumn(W,X));
+//console.log(addRow(W,Y));
 
+
+
+var Q = [ 
+		[9,4,6,2,6],
+		[1,3,8,1,7],
+		[4,2,7,2,9],
+		[3,7,5,1,8]
+		]; // 4x5
+
+console.log(Q);
+console.log(activity(Q));
 
 
 function evolve() {
@@ -64,3 +95,20 @@ function evolve() {
 	stepcount++;
 	console.log(stepcount);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
