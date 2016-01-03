@@ -1,4 +1,4 @@
-console.log("evolve.js");
+console.log("learn.js");
 
 // Hyperparameters
 const PERTURBCHANCE = 0.2
@@ -10,48 +10,23 @@ const PERTURBCHANCE = 0.2
 var BIAS = 2;
 var THRESHOLD = 4;
 
+var Q = [ 
+		[9,4,6,2,6],
+		[1,3,8,1,7],
+		[4,2,7,2,9],
+		[3,7,5,1,8]
+		]; // 4x5
 
 
-function sigmoid(t) { // possibly not even necessary
-    return 1/(1+Math.pow(Math.E, -t));
-}
-
-function neuron(a) {	// not the great warrior I thought you would be.
-	// sum of weighted inputs plus a bias evaluated at a parameter.
-	// sum(XiWi) - bias > parameter
-	
-	// a is an array
-	
-	//output weighted inputs if meets condition, output 0 if not
-
-	var A = numeric.sum(a);
-	
-	if(A - BIAS > THRESHOLD) {
-		return A;
-	} else {
-		return 0;
-	}
-	
-	
-}
-
-function vote(array) {
-	var winner = array[0];
+function vote(array) {  // returns the index of the highest value in array
+	var winner = 0;
 	for(var i = 0; i < array.length; i++) {
 		if(array[i] > winner) {
-			winner = array[i];
+			winner = i;
 		}
 	}
 	return winner;
 }
-
-var X = [0,0,0];
-var Y = [0,0,0,0];
-var W = [
-		[1,4,6,2],
-		[6,3,8,1],
-		[4,2,7,2]
-		];
 
 function addColumn(a,b) { // add b to be a new column of a
 	at = numeric.transpose(a);
@@ -79,46 +54,19 @@ function activity(a) { // input matrix, return matrix
 	return a; // ?
 }
 
-//console.log(addColumn(W,X));
-//console.log(addRow(W,Y));
-
-
-
-var Q = [ 
-		[9,4,6,2,6],
-		[1,3,8,1,7],
-		[4,2,7,2,9],
-		[3,7,5,1,8]
-		]; // 4x5
-
-//console.log(Q);
-//console.log(activity(Q));
-//activity(Q);
-
-
-
-
-
-
-
-
-
-
-
-function evolve() {
-	// the actual calculations and stuff
-	
-	letoli.decrement();
-	
-	if(letoli.health <= 0) {
-		//how do I update the genome and restart?
-	}
-	
-	
-	
-	stepcount++;
-	console.log(stepcount);
+function forward(X) {
+	// main thing 
 }
+
+
+
+
+
+console.log(vote([51,2,1,63,8,4,5,0,1,4,7]));
+
+
+
+
 
 
 
