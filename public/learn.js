@@ -1,6 +1,10 @@
 console.log("evolve.js");
 
 // Hyperparameters
+const PERTURBCHANCE = 0.2
+/* on a very theoretical level and looking a few layers up. Are these really hyper?
+   A true brain would adjust its adjustments to fit a scenario or even a personallity. more thought required */
+
 
 // Lessthanhyper-parameters, I don't even know
 var BIAS = 2;
@@ -12,7 +16,7 @@ function sigmoid(t) { // possibly not even necessary
     return 1/(1+Math.pow(Math.E, -t));
 }
 
-function neuron(a) {	
+function neuron(a) {	// not the great warrior I thought you would be.
 	// sum of weighted inputs plus a bias evaluated at a parameter.
 	// sum(XiWi) - bias > parameter
 	
@@ -29,6 +33,16 @@ function neuron(a) {
 	}
 	
 	
+}
+
+function vote(array) {
+	var winner = array[0];
+	for(var i = 0; i < array.length; i++) {
+		if(array[i] > winner) {
+			winner = array[i];
+		}
+	}
+	return winner;
 }
 
 var X = [0,0,0];
@@ -56,7 +70,7 @@ function activity(a) { // input matrix, return matrix
 	for(var i = 0; i < a.length; i++) {
 		for(var j = 0; j < a[i].length; j++) {
 			if(a[i][j] - BIAS > THRESHOLD) {
-				// do nothing
+			 // do nothing
 			} else {
 				a[i][j] = 0;
 			}
@@ -77,8 +91,18 @@ var Q = [
 		[3,7,5,1,8]
 		]; // 4x5
 
-console.log(Q);
-console.log(activity(Q));
+//console.log(Q);
+//console.log(activity(Q));
+//activity(Q);
+
+
+
+
+
+
+
+
+
 
 
 function evolve() {
