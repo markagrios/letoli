@@ -211,15 +211,7 @@ console.log(letoli.getLocation());
 console.log("--");
 clear(sctx);
 
-//////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neutral NETWORK//////////////// 
-//setInterval(evolve, DELAY);
-function live() {
-	letoli.move(-1,1);
-	letoli.stats();
-	//console.log(letoli);
-}
 
-//setInterval(live, 100);
 
 
 
