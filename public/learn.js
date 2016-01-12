@@ -48,15 +48,6 @@ function vary(a) { // used on weight matrices
 	return a; // ?
 }
 
-function forward(X) {
-	// main thing 
-	
-	var X = [letoli.food, letoli.water, letoli.sleep];
-	var Y;
-	
-	return Y;
-}
-
 function vote(array) {  // returns the index of the highest value in array
 	var winner = 0;
 	var best = array[0];
@@ -107,7 +98,14 @@ function choose(array) {
 	}
 }
 
-
+function forward(X) {
+	// main thing 
+	
+	var X = [letoli.food, letoli.water, letoli.sleep];
+	var Y;
+	
+	return Y;
+}
 
 
 var A = [
