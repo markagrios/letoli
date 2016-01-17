@@ -78,6 +78,15 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 		drawLetoli();	
 	},
 	
+	moveTo: function(x,y) {
+		letoli.x = x;
+		letoli.y = y;
+	
+		console.log("move to");
+	
+		drawLetoli();			
+	},
+	
 	eat : function() {
 		var location = this.getLocation();
 		
@@ -210,8 +219,5 @@ console.log("--");
 console.log(letoli.getLocation());
 console.log("--");
 clear(sctx);
-
-
-
 
 

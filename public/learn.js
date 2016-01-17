@@ -10,7 +10,17 @@ const PERTURBCHANCE = 0.2;
 var bias = 0.14;
 var threshold = 0.4;
 
-var 
+var fitness = 0;
+var layers = [];
+
+var A = [
+		[0.165, 0.047, 0.030, 0.268, 0.493, 0.498, 0.687],
+		[0.056,	0.845, 0.831, 0.478, 0.614,	0.949, 0.468],
+		[0.114,	0.770, 0.191, 0.033, 0.070,	0.448, 0.495]
+		];
+
+layers.push(A);
+layers.push(newMatrix(7,7));
 
 function addColumn(a,b) { // add b to be a new column of a
 	at = numeric.transpose(a);
@@ -41,7 +51,7 @@ function activity(a) { // input matrix, return matrix
 function vary(a) { // used on weight matrices
 	for(var i = 0; i < a.length; i++) {
 		for(var j = 0; j < a[i].length; j++) {
-			var change = ((Math.random() / 2) - 0.25).toFixed(2) * 1; // makes changes between -.25 and .25
+			var change = ((Math.random() / 2) - 0.25).toFixed(3) * 1; // makes changes between -.25 and .25
 			a[i][j] += change; 
 		}
 	}
@@ -74,28 +84,47 @@ function choose(array) {
 	switch(action) {
 		case MUP: 
 			letoli.move(0,-20);
+			document.getElementById("action").innerHTML = "move up";
 		break;
 		case MDOWN: 
 			letoli.move(0,20);
+			document.getElementById("action").innerHTML = "move down";
 		break;
 		case MLEFT: 
 			letoli.move(-20,0);
+			document.getElementById("action").innerHTML = "move left";
 		break;		
 		case MRIGHT: 
 			letoli.move(20,0);
+			document.getElementById("action").innerHTML = "move right";
 		break;
 		case EAT: 
 			letoli.eat();
+			document.getElementById("action").innerHTML = "eat";
 		break;
 		case DRINK: 
 			letoli.drink();
+			document.getElementById("action").innerHTML = "drink";
 		break;
 		case SLEEP: 
 			letoli.rest();
+			document.getElementById("action").innerHTML = "sleep";
 		break;
 		default:
 			console.log("For some reason, he can't decide.");
 	}
+}
+
+function newMatrix(r, c) {
+	var M = [];
+	
+	for(var i = 0; i < r; i++) {
+		M.push([]);
+		for(var j = 0; j < c; j++) {
+			M[i][j] = Math.random().toFixed(3) * 1
+		}
+	}
+	return M; // ?
 }
 
 function forward(X) {
@@ -104,30 +133,45 @@ function forward(X) {
 	var X = [letoli.food, letoli.water, letoli.sleep];
 	var Y;
 	
+	Y = activity(numeric.dot(X,layers[0]));
+	
 	return Y;
 }
 
-
-var A = [
-		[2,5,4],
-		[5,3,8],
-		[1,9,6]
-		];
-
-
-
+function restructure() {	// any modifications done on the neural network. Change weights, add neurons etc.
+	layers[0] = newMatrix(3,7);
+	layers[1] = newMatrix(7,7);
+}
 
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
 function live() {
+	if(letoli.health == 0) {
+		console.log("-----------------DEAD-----------------", fitness);
+		// draw Letoli to start position, set stats back. 
+		letoli.moveTo(LSTARTX,LSTARTY);
+		letoli.food = 1;
+		letoli.water = 1;
+		letoli.sleep = 1;
+		
+		fitness = 0;
+		
+		restructure();
+	}
+	
+	
 	letoli.decrement();
-	X = [letolo.food, letoli.water, letoli.sleep];
+	X = [letoli.food, letoli.water, letoli.sleep];
 	choose(forward(X));
+	
+	vary(A);
+	
+	fitness++;
 }
 
-//setInterval(live, 1000);
 
+//setInterval(live, 100);
 
 
 /* NOTES
@@ -136,6 +180,8 @@ function live() {
  * and what should be changed more.
  * 
  * How do I decide to add a new neuron/layer?
+ * 
+ * Need to make addNeuron() which adds a row to one matrix and a column to the other
  * 
 */
 
