@@ -8,7 +8,7 @@ const PERTURBCHANCE = 0.2;
 
 // Lessthanhyper-parameters, I don't even know
 var bias = 0.14;
-var threshold = 0.4;
+var threshold = 0.7;
 
 var fitness = 0;
 var layers = [];
@@ -133,7 +133,14 @@ function forward(X) {
 	var X = [letoli.food, letoli.water, letoli.sleep];
 	var Y;
 	
+	var W;
+	
+	
 	Y = activity(numeric.dot(X,layers[0]));
+	for(i = 1; i < layers.length; i++) {
+		W = layers[i];
+		Y = activity(numeric.dot(Y,W));
+	}
 	
 	return Y;
 }
