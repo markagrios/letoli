@@ -7,8 +7,8 @@ const PERTURBCHANCE = 0.2;
 
 
 // Lessthanhyper-parameters, I don't even know
-var bias = 0.14;
-var threshold = 0.7;
+var bias = 0.54;
+var threshold = 1;
 
 var fitness = 0;
 var layers = [];
@@ -20,6 +20,7 @@ var A = [
 		];
 
 layers.push(A);
+layers.push(newMatrix(7,7));
 layers.push(newMatrix(7,7));
 
 function addColumn(a,b) { // add b to be a new column of a
@@ -33,6 +34,10 @@ function addColumn(a,b) { // add b to be a new column of a
 function addRow(a,b) {
 	a.push(b);
 	return a;
+}
+
+function addNeuron(layer) {
+	// work on this
 }
 
 function activity(a) { // input matrix, return matrix
@@ -140,7 +145,10 @@ function forward(X) {
 	for(i = 1; i < layers.length; i++) {
 		W = layers[i];
 		Y = activity(numeric.dot(Y,W));
+		console.log("layer");
 	}
+	
+	console.log(X,Y);
 	
 	return Y;
 }
@@ -148,6 +156,7 @@ function forward(X) {
 function restructure() {	// any modifications done on the neural network. Change weights, add neurons etc.
 	layers[0] = newMatrix(3,7);
 	layers[1] = newMatrix(7,7);
+	layers[2] = newMatrix(7,7);
 }
 
 
@@ -179,6 +188,8 @@ function live() {
 
 
 //setInterval(live, 100);
+
+
 
 
 /* NOTES
