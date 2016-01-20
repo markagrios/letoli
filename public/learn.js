@@ -13,13 +13,7 @@ var threshold = 1;
 var fitness = 0;
 var layers = [];
 
-var A = [
-		[0.165, 0.047, 0.030, 0.268, 0.493, 0.498, 0.687],
-		[0.056,	0.845, 0.831, 0.478, 0.614,	0.949, 0.468],
-		[0.114,	0.770, 0.191, 0.033, 0.070,	0.448, 0.495]
-		];
-
-layers.push(A);
+layers.push(newMatrix(3,7));
 layers.push(newMatrix(7,7));
 layers.push(newMatrix(7,7));
 
@@ -38,6 +32,12 @@ function addRow(a,b) {
 
 function addNeuron(layer) {
 	// work on this
+	/* add a column to layer-1 and a row to layer
+	 * row added must have same number of elements as the rows in layers[layer]
+	 * column added must have same number of elements as the rows in layers[layer-1]
+	 * 
+	 * WHY IS THIS SO HARD??!?!?!
+	*/
 }
 
 function activity(a) { // input matrix, return matrix
@@ -126,7 +126,7 @@ function newMatrix(r, c) {
 	for(var i = 0; i < r; i++) {
 		M.push([]);
 		for(var j = 0; j < c; j++) {
-			M[i][j] = Math.random().toFixed(3) * 1
+			M[i][j] = Math.random().toFixed(3) * 1;
 		}
 	}
 	return M; // ?
