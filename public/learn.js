@@ -13,7 +13,7 @@ var threshold = 1;
 var fitness = 0;
 var layers = [];
 
-layers.push(newMatrix(3,7));
+layers.push(newMatrix(5,7));
 layers.push(newMatrix(7,7));
 layers.push(newMatrix(7,7));
 
@@ -134,8 +134,11 @@ function newMatrix(r, c) {
 
 function forward(X) {
 	// main thing 
+	var x = (letoli.x / 510).toFixed(3) *1;
+	var y = (letoli.y / 450).toFixed(3) *1;
 	
-	var X = [letoli.food, letoli.water, letoli.sleep];
+	
+	var X = [letoli.food, letoli.water, letoli.sleep, x, y];
 	var Y;
 	
 	var W;
@@ -162,6 +165,10 @@ function restructure() {	// any modifications done on the neural network. Change
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
+console.log((letoli.x / 510).toFixed(3) *1);
+console.log((letoli.y / 450).toFixed(3) *1);
+
+
 function live() {
 	if(letoli.health == 0) {
 		console.log("-----------------DEAD-----------------", fitness);
@@ -181,18 +188,23 @@ function live() {
 	X = [letoli.food, letoli.water, letoli.sleep];
 	choose(forward(X));
 	
-	vary(A);
+	for(var i = 0; i < layers.length; i++) {
+		vary(layers[i]);		
+	}
 	
 	fitness++;
 }
 
 
-//setInterval(live, 100);
+//setInterval(live, 400);
 
 
 
 
 /* NOTES
+ * 
+ * Add coordinates as inputs.
+ * 
  * 
  * when and when not to change weights. How do I know what was just changed should be kept
  * and what should be changed more.
