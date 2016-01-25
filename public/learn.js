@@ -7,7 +7,7 @@ const PERTURBCHANCE = 0.2;
 
 
 // Lessthanhyper-parameters, I don't even know
-var bias = 0.54;
+var bias = 0.24;
 var threshold = 1;
 
 var fitness = 0;
@@ -38,6 +38,12 @@ function addNeuron(layer) {
 	 * 
 	 * WHY IS THIS SO HARD??!?!?!
 	*/
+	
+	var column = new Array(layers[layer].length);
+	var row = new Array(layers[layer+1][0].length);
+	
+	addColumn(layers[layer],column);
+	addRow(layers[layer+1],row);
 }
 
 function activity(a) { // input matrix, return matrix
@@ -134,39 +140,37 @@ function newMatrix(r, c) {
 
 function forward(X) {
 	// main thing 
-	var x = (letoli.x / 510).toFixed(3) *1;
-	var y = (letoli.y / 450).toFixed(3) *1;
-	
-	
-	var X = [letoli.food, letoli.water, letoli.sleep, x, y];
+
 	var Y;
+	var W = layers[0];
 	
-	var W;
+	Y = activity(numeric.dot(activity(numeric.dot(activity(numeric.dot(X,layers[0])),layers[1])),layers[2]));
 	
-	
+	//Y = activity(numeric.dot(X,W));
+/*	
 	Y = activity(numeric.dot(X,layers[0]));
-	for(i = 1; i < layers.length; i++) {
+	for(i = 0; i < layers.length; i++) {
 		W = layers[i];
 		Y = activity(numeric.dot(Y,W));
 		console.log("layer");
 	}
-	
+*/	
 	console.log(X,Y);
 	
 	return Y;
 }
 
 function restructure() {	// any modifications done on the neural network. Change weights, add neurons etc.
-	layers[0] = newMatrix(3,7);
-	layers[1] = newMatrix(7,7);
-	layers[2] = newMatrix(7,7);
+	for(var i = 0; i < layers.length; i++) {
+		vary(layers[i]);
+	}
 }
 
 
-//////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
+console.log(layers);
+addNeuron(0);
 
-console.log((letoli.x / 510).toFixed(3) *1);
-console.log((letoli.y / 450).toFixed(3) *1);
+//////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
 
 function live() {
@@ -182,10 +186,13 @@ function live() {
 		
 		restructure();
 	}
-	
-	
+		
 	letoli.decrement();
-	X = [letoli.food, letoli.water, letoli.sleep];
+	
+	var lx = (letoli.x / 510).toFixed(3) * 1;
+	var ly = (letoli.y / 450).toFixed(3) * 1;
+	
+	var X = [letoli.food, letoli.water, letoli.sleep, lx, ly];
 	choose(forward(X));
 	
 	for(var i = 0; i < layers.length; i++) {
@@ -196,7 +203,7 @@ function live() {
 }
 
 
-//setInterval(live, 400);
+//setInterval(live, 100);
 
 
 
