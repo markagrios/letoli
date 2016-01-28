@@ -13,9 +13,23 @@ var threshold = 1;
 var fitness = 0;
 var layers = [];
 
-layers.push(newMatrix(5,7));
-layers.push(newMatrix(7,7));
-layers.push(newMatrix(7,7));
+layers.push(newMatrix(5,3));
+layers.push(newMatrix(3,4));
+layers.push(newMatrix(4,7));
+
+
+function printMatrix(matrix) {
+	for (var i = 0; i < matrix.length; i++) {
+		var line = "";
+		for (var j = 0; j < matrix[i].length; j++) {
+			line += matrix[i][j] + "  |  "
+			//console.log(matrix[i][j] + " ");
+		}
+		console.log(line);
+	}
+console.log("--------------------------------");
+}
+
 
 function addColumn(a,b) { // add b to be a new column of a
 	at = numeric.transpose(a);
@@ -32,12 +46,6 @@ function addRow(a,b) {
 
 function addNeuron(layer) {
 	// work on this
-	/* add a column to layer-1 and a row to layer
-	 * row added must have same number of elements as the rows in layers[layer]
-	 * column added must have same number of elements as the rows in layers[layer-1]
-	 * 
-	 * WHY IS THIS SO HARD??!?!?!
-	*/
 	
 	var column = new Array(layers[layer].length);
 	var row = new Array(layers[layer+1][0].length);
@@ -169,6 +177,10 @@ function restructure() {	// any modifications done on the neural network. Change
 
 console.log(layers);
 addNeuron(0);
+console.log(layers);
+
+printMatrix(layers[0]);
+printMatrix(layers[1]);
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
@@ -204,9 +216,6 @@ function live() {
 
 
 //setInterval(live, 100);
-
-
-
 
 /* NOTES
  * 
