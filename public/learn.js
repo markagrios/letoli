@@ -30,7 +30,6 @@ function printMatrix(matrix) {
 console.log("--------------------------------");
 }
 
-
 function addColumn(a,b) { // add b to be a new column of a
 	at = numeric.transpose(a);
 	at.push(b);
@@ -163,7 +162,7 @@ function forward(X) {
 		console.log("layer");
 	}
 */	
-	console.log(X,Y);
+	//console.log(X,Y);
 	
 	return Y;
 }
@@ -200,6 +199,7 @@ function live() {
 	}
 		
 	letoli.decrement();
+	letoli.stats();
 	
 	var lx = (letoli.x / 510).toFixed(3) * 1;
 	var ly = (letoli.y / 450).toFixed(3) * 1;
@@ -215,7 +215,7 @@ function live() {
 }
 
 
-//setInterval(live, 100);
+setInterval(live, 100);
 
 /* NOTES
  * 

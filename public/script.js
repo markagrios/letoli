@@ -40,11 +40,15 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 	
 	stats : function() {
 		this.health = (Math.cbrt(this.food * this.water * this.sleep));
-		console.log("food " + this.food, "water " + this.water, "sleep " + this.sleep);
-		console.log(this.health);
+		console.log("food " + this.food, "water " + this.water, "sleep " + this.sleep + " health " + this.health);
+		//console.log(this.health);
 	},
 	
 	decrement : function() {				// commas, don't forget
+		if(this.getLocation() == "deathwater") {
+			this.food = 0;
+		}
+		
 		if(!(this.sleep < .05)) {
 			this.sleep -= .05;		
 			this.sleep = 1 * (this.water).toFixed(3);	// multiply by one to make it a number not a string
@@ -60,9 +64,9 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.food = 1 * (this.food).toFixed(3);	// multiply by one to make it a number not a string
 		} else {this.food = 0;}		
 		
-		console.log(this.sleep, this.food, this.water);
+		//console.log(this.sleep, this.food, this.water);
 		this.health = (Math.cbrt(this.food * this.water * this.sleep));
-		console.log(this.health);
+		//console.log(this.health);
 	},
 	
 	getLocation : function() {
