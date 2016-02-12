@@ -7,7 +7,7 @@ const PERTURBCHANCE = 0.2;
 
 
 // Lessthanhyper-parameters, I don't even know
-var bias = 0.24;
+var bias = 0.14;
 var threshold = 1;
 
 var fitness = 0;
@@ -23,7 +23,6 @@ function printMatrix(matrix) {
 		var line = "";
 		for (var j = 0; j < matrix[i].length; j++) {
 			line += matrix[i][j] + "  |  "
-			//console.log(matrix[i][j] + " ");
 		}
 		console.log(line);
 	}
@@ -46,8 +45,10 @@ function addRow(a,b) {
 function addNeuron(layer) {
 	// work on this
 	
-	var column = new Array(layers[layer].length);
-	var row = new Array(layers[layer+1][0].length);
+	//var column = new Array(layers[layer].length);
+	//var row = new Array(layers[layer+1][0].length);
+	var column = newMatrix(layers[layer].length,1);
+	var row = newMatrix(layers[layer+1][0].length,1);
 	
 	addColumn(layers[layer],column);
 	addRow(layers[layer+1],row);
@@ -173,13 +174,15 @@ function restructure() {	// any modifications done on the neural network. Change
 	}
 }
 
-
-console.log(layers);
-addNeuron(0);
-console.log(layers);
-
 printMatrix(layers[0]);
 printMatrix(layers[1]);
+console.log(numeric.dim(layers[0]));
+console.log(numeric.dim(layers[1]));
+var QQ = numeric.dot(layers[0],layers[1]);
+printMatrix(QQ);
+console.log(numeric.dim(QQ));
+//----------------------------------------------
+addNeuron(0);
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
@@ -215,7 +218,7 @@ function live() {
 }
 
 
-setInterval(live, 100);
+setInterval(live, 1);
 
 /* NOTES
  * 
