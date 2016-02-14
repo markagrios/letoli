@@ -47,8 +47,9 @@ function addNeuron(layer) {
 	
 	//var column = new Array(layers[layer].length);
 	//var row = new Array(layers[layer+1][0].length);
-	var column = newMatrix(layers[layer].length,1);
-	var row = newMatrix(layers[layer+1][0].length,1);
+	var column = newMatrix((layers[layer].length,1));
+	var row = newMatrix((layers[layer+1][0].length,1));
+	
 	
 	addColumn(layers[layer],column);
 	addRow(layers[layer+1],row);
@@ -174,15 +175,12 @@ function restructure() {	// any modifications done on the neural network. Change
 	}
 }
 
-printMatrix(layers[0]);
-printMatrix(layers[1]);
-console.log(numeric.dim(layers[0]));
-console.log(numeric.dim(layers[1]));
-var QQ = numeric.dot(layers[0],layers[1]);
-printMatrix(QQ);
-console.log(numeric.dim(QQ));
-//----------------------------------------------
+
+console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
+console.log("--------------------");
 addNeuron(0);
+
+console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
 
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
@@ -210,15 +208,11 @@ function live() {
 	var X = [letoli.food, letoli.water, letoli.sleep, lx, ly];
 	choose(forward(X));
 	
-	for(var i = 0; i < layers.length; i++) {
-		vary(layers[i]);		
-	}
-	
 	fitness++;
 }
 
 
-setInterval(live, 1);
+//setInterval(live, 1);
 
 /* NOTES
  * 
