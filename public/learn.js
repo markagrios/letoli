@@ -1,6 +1,6 @@
 console.log("learn.js");
 
-// Hyperparameters
+// Hyperparameters I guess
 const PERTURBCHANCE = 0.2;
 /* on a very theoretical level and looking a few layers up. Are these really hyper?
    A true brain would adjust its adjustments to fit a scenario or even a personallity. more thought required */
@@ -47,9 +47,13 @@ function addNeuron(layer) {
 	
 	//var column = new Array(layers[layer].length);
 	//var row = new Array(layers[layer+1][0].length);
-	var column = newMatrix((layers[layer].length,1));
-	var row = newMatrix((layers[layer+1][0].length,1));
 	
+	var column = newMatrix((1,layers[layer].length));
+	var row = newMatrix((1,layers[layer+1][0].length));
+	
+	//var column = newMatrix((1,layers[layer].length));
+	//var row = newMatrix((1,layers[layer+1][0].length));
+		
 	
 	addColumn(layers[layer],column);
 	addRow(layers[layer+1],row);
