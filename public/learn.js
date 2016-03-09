@@ -45,15 +45,24 @@ function addRow(a,b) {
 function addNeuron(layer) {
 	// work on this
 	
-	//var column = new Array(layers[layer].length);
-	//var row = new Array(layers[layer+1][0].length);
-	
-	var column = newMatrix((1,layers[layer].length));
-	var row = newMatrix((1,layers[layer+1][0].length));
-	
 	//var column = newMatrix((1,layers[layer].length));
 	//var row = newMatrix((1,layers[layer+1][0].length));
-		
+	
+	// new column with a number of rows elements inside
+	
+	var column = new Array(layers[layer].length);	
+	var row = new Array(layers[layer+1][0].length);	
+	
+	
+	for(var i = 0; i < column.length; i++) {
+		column[i] = Math.random().toFixed(3) * 1;
+	}
+	for(var i = 0; i < row.length; i++) {
+		row[i] = Math.random().toFixed(3) * 1;
+	}
+	
+	//console.log(column);
+	//console.log(row);
 	
 	addColumn(layers[layer],column);
 	addRow(layers[layer+1],row);
@@ -148,7 +157,7 @@ function newMatrix(r, c) {
 			M[i][j] = Math.random().toFixed(3) * 1;
 		}
 	}
-	return M; // ?
+	return M;
 }
 
 function forward(X) {
@@ -179,13 +188,23 @@ function restructure() {	// any modifications done on the neural network. Change
 	}
 }
 
+printMatrix(layers[0]);
+printMatrix(layers[1]);
 
 console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
+
 console.log("--------------------");
 addNeuron(0);
 
 console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
 
+printMatrix(layers[0]);
+printMatrix(layers[1]);
+
+console.log("rows " + layers[0].length);
+console.log("columns " + layers[0][0].length);
+
+//console.log(numeric.dot(layers[0],layers[1]));
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
 
@@ -216,7 +235,7 @@ function live() {
 }
 
 
-//setInterval(live, 1);
+//setInterval(live, 10);
 
 /* NOTES
  * 
