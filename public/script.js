@@ -64,6 +64,15 @@ var letoli = {			// would it be easier/more helpful if stats were between 0 and 
 			this.food = 1 * (this.food).toFixed(3);	// multiply by one to make it a number not a string
 		} else {this.food = 0;}		
 		
+		if(this.x < 0 || this.x > WIDTH) {
+			this.food = 0;
+			console.log("OUT OF BOUNDS");
+		}
+		if(this.y < 0 || this.y > HEIGHT) {
+			this.food = 0;
+			console.log("OUT OF BOUNDS");
+		}
+		
 		//console.log(this.sleep, this.food, this.water);
 		this.health = (Math.cbrt(this.food * this.water * this.sleep));
 		//console.log(this.health);

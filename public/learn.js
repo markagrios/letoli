@@ -84,8 +84,9 @@ function activity(a) { // input matrix, return matrix
 function vary(a) { // used on weight matrices
 	for(var i = 0; i < a.length; i++) {
 		for(var j = 0; j < a[i].length; j++) {
-			var change = ((Math.random() / 2) - 0.25).toFixed(3) * 1; // makes changes between -.25 and .25
+			var change = (Math.random()*2 - 1).toFixed(3) * 1; // makes changes between -1 and 1
 			a[i][j] += change; 
+			//console.log(change);
 		}
 	}
 	return a; // ?
@@ -168,16 +169,12 @@ function forward(X) {
 	
 	Y = activity(numeric.dot(activity(numeric.dot(activity(numeric.dot(X,layers[0])),layers[1])),layers[2]));
 	
-	//Y = activity(numeric.dot(X,W));
-/*	
-	Y = activity(numeric.dot(X,layers[0]));
-	for(i = 0; i < layers.length; i++) {
-		W = layers[i];
-		Y = activity(numeric.dot(Y,W));
-		console.log("layer");
+	/*
+	for(var i = 0; i , layers.length; i++) {
+		Y = activity(numeric.dot(layers[i],));
 	}
-*/	
-	//console.log(X,Y);
+	*/
+	
 	
 	return Y;
 }
@@ -186,23 +183,18 @@ function restructure() {	// any modifications done on the neural network. Change
 	for(var i = 0; i < layers.length; i++) {
 		vary(layers[i]);
 	}
+	console.log("restructure");
 }
 
-printMatrix(layers[0]);
-printMatrix(layers[1]);
 
-console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
-
-console.log("--------------------");
-addNeuron(0);
-
-console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
+var lx = (letoli.x / 510).toFixed(3) * 1;
+var ly = (letoli.y / 450).toFixed(3) * 1;
+var X = [letoli.food, letoli.water, letoli.sleep, lx, ly];
 
 printMatrix(layers[0]);
 printMatrix(layers[1]);
 
-console.log("rows " + layers[0].length);
-console.log("columns " + layers[0][0].length);
+
 
 //console.log(numeric.dot(layers[0],layers[1]));
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
@@ -235,7 +227,7 @@ function live() {
 }
 
 
-//setInterval(live, 10);
+setInterval(live, 10);
 
 /* NOTES
  * 
