@@ -30,11 +30,11 @@ console.log("--------------------------------");
 }
 
 function addColumn(a,b) { // add b to be a new column of a
-	at = numeric.transpose(a);
-	at.push(b);
-	ab = numeric.transpose(at);
+	a = numeric.transpose(a);
+	a.push(b);
+	a = numeric.transpose(a);
 	
-	return ab;
+	return a;
 }
 
 function addRow(a,b) {
@@ -43,28 +43,34 @@ function addRow(a,b) {
 }
 
 function addNeuron(layer) {
-	// work on this
-	
-	//var column = newMatrix((1,layers[layer].length));
-	//var row = newMatrix((1,layers[layer+1][0].length));
-	
 	// new column with a number of rows elements inside
 	
-	var column = new Array(layers[layer].length);	
-	var row = new Array(layers[layer+1][0].length);	
+	var L1 = numeric.dim(layers[layer]);
+	var L2 = numeric.dim(layers[layer+1]);
+	var r = 0;
+	var c = 1;
+	var column = [];	
+	var row = [];
 	
+	console.log(L1,L2);
 	
-	for(var i = 0; i < column.length; i++) {
-		column[i] = Math.random().toFixed(3) * 1;
+	for(var i = 0; i < L2[c]; i++) {
+		row.push(Math.random().toFixed(3) * 1);
 	}
-	for(var i = 0; i < row.length; i++) {
-		row[i] = Math.random().toFixed(3) * 1;
+	for(var i = 0; i < L1[r]; i++) {
+		column.push(Math.random().toFixed(3) * 1);
 	}
 	
-	//console.log(column);
-	//console.log(row);
+	console.log(column.length);
+	console.log(row.length);
 	
-	addColumn(layers[layer],column);
+	console.log("column",column);
+	console.log("row",row);
+	
+	//addColumn(layers[layer],column);       DOESN'T WORK FOR SOME REASON!!!! fine, whatever. I don't care..
+	layers[layer] = numeric.transpose(layers[layer]);
+	layers[layer].push(column);
+	layers[layer] = numeric.transpose(layers[layer]);
 	addRow(layers[layer+1],row);
 }
 
@@ -162,19 +168,13 @@ function newMatrix(r, c) {
 }
 
 function forward(X) {
-	// main thing 
-
 	var Y;
-	var W = layers[0];
-	
-	Y = activity(numeric.dot(activity(numeric.dot(activity(numeric.dot(X,layers[0])),layers[1])),layers[2]));
-	
-	/*
-	for(var i = 0; i , layers.length; i++) {
-		// this might have to be recursive....?
+	Y = activity(numeric.dot(X,layers[0]));
+	//console.log("layer: ",0);
+	for(var i = 1; i < layers.length; i++) {
+		Y = activity(numeric.dot(Y,layers[i]));
+		//console.log("layer: ",i);
 	}
-	*/
-	
 	
 	return Y;
 }
@@ -187,14 +187,22 @@ function restructure() {	// any modifications done on the neural network. Change
 }
 
 
-var lx = (letoli.x / 510).toFixed(3) * 1;
-var ly = (letoli.y / 450).toFixed(3) * 1;
-var X = [letoli.food, letoli.water, letoli.sleep, lx, ly];
 
 printMatrix(layers[0]);
 printMatrix(layers[1]);
 
 
+addNeuron(0);
+
+printMatrix(layers[0]);
+printMatrix(layers[1]);
+console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
+
+/*
+var M = newMatrix(3,4);
+console.log(M.length);
+console.log(M[0].length);
+*/
 
 //console.log(numeric.dot(layers[0],layers[1]));
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
@@ -230,7 +238,7 @@ function live() {
 }
 
 
-setInterval(live, 10);
+//setInterval(live, 50);
 
 /* NOTES
  * 
