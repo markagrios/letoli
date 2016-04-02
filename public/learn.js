@@ -171,7 +171,7 @@ function forward(X) {
 	
 	/*
 	for(var i = 0; i , layers.length; i++) {
-		Y = activity(numeric.dot(layers[i],));
+		// this might have to be recursive....?
 	}
 	*/
 	
@@ -203,6 +203,9 @@ printMatrix(layers[1]);
 function live() {
 	if(letoli.health == 0) {
 		console.log("-----------------DEAD-----------------", fitness);
+		if(fitness > 20) {
+			alert("He's learning...", fitness);
+		}
 		// draw Letoli to start position, set stats back. 
 		letoli.moveTo(LSTARTX,LSTARTY);
 		letoli.food = 1;
@@ -230,8 +233,6 @@ function live() {
 setInterval(live, 10);
 
 /* NOTES
- * 
- * Add coordinates as inputs.
  * 
  * 
  * when and when not to change weights. How do I know what was just changed should be kept
