@@ -92,7 +92,6 @@ function vary(a) { // used on weight matrices
 		for(var j = 0; j < a[i].length; j++) {
 			var change = (Math.random()*2 - 1).toFixed(3) * 1; // makes changes between -1 and 1
 			a[i][j] += change; 
-			//console.log(change);
 		}
 	}
 	return a; // ?
@@ -170,10 +169,8 @@ function newMatrix(r, c) {
 function forward(X) {
 	var Y;
 	Y = activity(numeric.dot(X,layers[0]));
-	//console.log("layer: ",0);
 	for(var i = 1; i < layers.length; i++) {
 		Y = activity(numeric.dot(Y,layers[i]));
-		//console.log("layer: ",i);
 	}
 	
 	return Y;
@@ -186,25 +183,6 @@ function restructure() {	// any modifications done on the neural network. Change
 	console.log("restructure");
 }
 
-
-
-printMatrix(layers[0]);
-printMatrix(layers[1]);
-
-
-addNeuron(0);
-
-printMatrix(layers[0]);
-printMatrix(layers[1]);
-console.log(numeric.dim(layers[0]),numeric.dim(layers[1]));
-
-/*
-var M = newMatrix(3,4);
-console.log(M.length);
-console.log(M[0].length);
-*/
-
-//console.log(numeric.dot(layers[0],layers[1]));
 //////////////THIS IS THE END OF THE CODE, STEP IS ONE PASS THROUGH THE Neural NETWORK//////////////// 
 
 
@@ -238,7 +216,7 @@ function live() {
 }
 
 
-//setInterval(live, 50);
+setInterval(live, 20);
 
 /* NOTES
  * 
