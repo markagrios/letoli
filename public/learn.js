@@ -226,7 +226,6 @@ setInterval(live, 20);
  * 
  * How do I decide to add a new neuron/layer?
  * 
- * Need to make addNeuron() which adds a row to one matrix and a column to the other
  * 
 */
 
